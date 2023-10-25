@@ -41,7 +41,7 @@ public class TravelingSalesMan {
         }
         for (int k = 0; level != 0 && k < N; k++) {
             node.reducedMatrix[i][k] = INF;
-            node.reducedMatrix[k][j] = INF;
+            node.reducedMatrix[k][j] = INF; 
         }
         node.reducedMatrix[j][0] = INF;
         node.level = level;
