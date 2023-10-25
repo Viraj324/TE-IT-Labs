@@ -6,7 +6,7 @@ class Node {
     ArrayList<Pair<Integer, Integer>> path;
     int[][] reducedMatrix;
     int cost;
-    int vertex;
+    int vertex; 
     int level;
 
     Node() {
