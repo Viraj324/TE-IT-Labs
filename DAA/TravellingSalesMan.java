@@ -6,12 +6,12 @@ class Node {
     ArrayList<Pair<Integer, Integer>> path;
     int[][] reducedMatrix;
     int cost;
-    int vertex; 
+    int vertex;
     int level;
 
-    Node() {
+    Node(int n) {
         path = new ArrayList<>();
-        reducedMatrix = new int[N][N];
+        reducedMatrix = new int[n][n];
     }
 }
 
@@ -25,13 +25,13 @@ class Pair<F, S> {
     }
 }
 
-public class TravelingSalesman {
+public class TravelingSalesMan {
     static final int N = 5;
     static final int INF = Integer.MAX_VALUE;
 
     static Node newNode(int parentMatrix[][], ArrayList<Pair<Integer, Integer>> path,
                         int level, int i, int j) {
-        Node node = new Node();
+        Node node = new Node(N);
         node.path = new ArrayList<>(path);
         if (level != 0) {
             node.path.add(new Pair<>(i, j));
@@ -119,7 +119,13 @@ public class TravelingSalesman {
     static int solve(int costMatrix[][]) {
         PriorityQueue<Node> pq = new PriorityQueue<>(new Comp());
         ArrayList<Pair<Integer, Integer>> v = new ArrayList<>();
-        Node root = newNode(costMatrix, v, 0, -1, 0);
+
+        int parentMatrix[][] = new int[N][N];
+        for (int x = 0; x < N; x++) {
+            System.arraycopy(costMatrix[x], 0, parentMatrix[x], 0, N);
+        }
+
+        Node root = newNode(parentMatrix, v, 0, -1, 0);
         root.cost = calculateCost(root.reducedMatrix);
         pq.add(root);
 
